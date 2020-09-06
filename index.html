@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Meta -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Fonts & Icons -->
+        <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+
+        <!-- Stylesheets -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="./assets/css/style.css" />
+
         <title>Weather Dashboard</title>
     </head>
 
     <body class="flex-column min-100-vh">
-        <header class="page-header">
+
+        <header class="page-header page-title">
             <h1>OpenWeather Dashboard</h1>
         </header>
-        <main></main>
+
+        <main class="container-fluid">
+
+            // Left Div - City Search
+            <div class="left"></div>
+
+            // Right Div - Display Results
+            <div class="right">
+
+                // Top Right Div - Display City Data
+                <div class="top"></div>
+
+                // Bottom Right Div - Display Forecast
+                <div class="bottom"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p><span class="copyleft">&copy;</span> Matthew Brassey 2020</p>
+        </footer>
+
         <script src="./assets/js/homepage.js"></script>
     </body>
 </html>
