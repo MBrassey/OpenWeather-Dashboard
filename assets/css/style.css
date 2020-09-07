@@ -24,17 +24,16 @@ body {
     min-height: 100vh;
     flex-direction: column;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    overflow: hidden;
 }
 
 header {
     background: var(--Sky);
     padding: 30px 25px;
+    width: 100%;
 }
 
 header h1 {
     color: var(--Absinthe);
-    font-family: "Orbitron", sans-serif;
     margin: 5px 0 20px;
     color: var(--Azure);
     font-family: "Play", sans-serif;
@@ -65,9 +64,9 @@ form input {
 }
 
 .row {
-    display: flex;
     flex: 1;
-    height: 100%;
+    margin: 0%;
+    width: 100%;
 }
 
 .left {
@@ -119,9 +118,10 @@ footer {
 
 footer p {
     font-weight: bold;
-    font-family: "Orbitron", sans-serif;
+    font-family: ;
     color: var(--Azure);
     font-size: 1.3rem;
+    font-family: "Play", sans-serif;
 }
 
 .copyleft {
@@ -140,4 +140,8 @@ footer p {
     background-color: var(--Sakura);
     border-radius: 12px; 
     padding: 4px;
+}
+
+#cityTitle {
+    font-family: "Aldrich", sans-serif;
 }
