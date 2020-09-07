@@ -54,11 +54,12 @@ form {
 
 form input {
     font-family: "Aldrich", sans-serif;
+    color: var(--Night);
     outline: none;
     border: none;
     padding: 12px;
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.2rem;
     border: 2px solid var(--Azure);
     border-radius: 12px;
 }
@@ -102,6 +103,11 @@ form input {
     font-size: 1.2rem;
     font-weight: normal;
     padding: 10px;
+}
+.card {
+    background-color: var(--Sky);
+    color: var(--Zinc);
+    padding-top: 12px;
 }
 
 footer {
