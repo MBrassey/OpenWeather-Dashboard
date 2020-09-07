@@ -16,8 +16,7 @@
 }
 
 body {
-    background: var(--Night);
-
+    background: var(--Zinc);
     margin: 0;
     padding: 0;
     display: flex;
@@ -59,9 +58,20 @@ form input {
     border-radius: 12px;
 }
 
+.left {
+    padding: 20px 40px;
+    background-color: var(--Stone);
+}
+
+.right {
+    padding: 20px 40px;
+    background-color: var(--Zinc);
+}
+
+
 footer {
     width: 100%;
-    background: var(--Sky);
+    background: var(--Zinc);
     padding: 20px;
     border-top: 5px solid var(--Azure);
 }
