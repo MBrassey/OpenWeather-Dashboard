@@ -5,6 +5,7 @@
 :root {
     --Azure: #2994cb;
     --Absinthe: #a3de9e;
+    --Sakura: #de9ea1;
     --Sky: #394b59;
     --Anthracite: #2a2a2a;
     --Jet: #141414;
@@ -126,4 +127,10 @@ footer p {
 #cityTitle {
     font-size: 2rem;
     font-weight: bold;
+}
+
+#uvColor {
+    background-color: var(--Sakura);
+    border-radius: 12px; 
+    padding: 4px;
 }
