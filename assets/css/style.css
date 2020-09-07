@@ -28,7 +28,6 @@ body {
 header {
     background: var(--Sky);
     padding: 30px 25px;
-    border-bottom: 5px solid var(--Azure);
 }
 
 header h1 {
@@ -39,6 +38,10 @@ header h1 {
     font-family: "Play", sans-serif;
     margin-bottom: 5px;
     margin-top: 0;
+}
+
+li {
+    list-style-type: none;
 }
 
 form {
@@ -66,8 +69,10 @@ form input {
 
 .left {
     padding: 40px;
-    background-color: var(--Stone);
+    background-color: var(--Sky);
+    color: var(--Zinc);
 }
+
 
 .right {
     padding: 40px;
@@ -75,12 +80,26 @@ form input {
 }
 
 .top {
-    border: 1px solid var(--Azure);
+    padding-top: 25px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 25px;
+    border: 2px solid var(--Azure);
     border-radius: 12px; 
 }
 
 .bottom {
-    margin-top: 12px;
+    margin-top: 20px;
+}
+
+.forecastContainer {
+
+}
+
+.cityData {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
 }
 
 footer {
@@ -88,7 +107,6 @@ footer {
     height: 90px;
     background: var(--Zinc);
     padding: 20px;
-    border-top: 5px solid var(--Azure);
 }
 
 footer p {
@@ -103,4 +121,9 @@ footer p {
     font-weight: bold;
     transform: rotate(180deg);
     font-size: 1.3rem;
+}
+
+#cityTitle {
+    font-size: 2rem;
+    font-weight: bold;
 }
