@@ -39,6 +39,7 @@ header h1 {
     font-family: "Play", sans-serif;
     margin-bottom: 5px;
     margin-top: 0;
+    font-size: 3.3rem;
 }
 
 li {
@@ -75,7 +76,6 @@ form input {
     color: var(--Zinc);
 }
 
-
 .right {
     padding: 40px;
     background-color: var(--Zinc);
@@ -87,7 +87,7 @@ form input {
     padding-left: 20px;
     padding-bottom: 25px;
     border: 2px solid var(--Azure);
-    border-radius: 12px; 
+    border-radius: 12px;
 }
 
 .bottom {
@@ -95,7 +95,6 @@ form input {
 }
 
 .forecastContainer {
-
 }
 
 .cityData {
@@ -138,10 +137,38 @@ footer p {
 
 #uvColor {
     background-color: var(--Sakura);
-    border-radius: 12px; 
+    border-radius: 12px;
     padding: 4px;
 }
 
 #cityTitle {
     font-family: "Aldrich", sans-serif;
+}
+
+@media screen and (max-width: 770px) {
+    form .form-group {
+        flex: 1 100%;
+    }
+
+    form .form-group button {
+        width: 100%;
+    }
+
+    .top {
+        padding-top: 15px;
+        padding-right: 5px;
+        padding-left: 0px;
+        padding-bottom: 5px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    #cityTitle {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 770px) {
 }
