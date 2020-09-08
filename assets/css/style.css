@@ -85,6 +85,10 @@ form .form-group {
     margin-right: 0%;
 }
 
+.btn:hover {
+    background-color: var(--Azure);
+}
+
 .row {
     flex: 1;
     margin: 0%;
@@ -133,6 +137,11 @@ form .form-group {
 
 .card2 {
     margin-top: 8px;
+    cursor: pointer;
+}
+
+.card2:hover {
+    background-color: var(--Stone);
 }
 
 .cityButton {
@@ -163,6 +172,23 @@ form .form-group {
     font-weight: bold;
 }
 
+.icon-card {
+    float: right;
+    color: var(--Stone);
+    font-size: 3.3rem;
+    padding-right: 80px;
+    margin-bottom: 0%;
+}
+
+.date-card, #date {
+    color: var(--Azure);
+}
+
+.fas:hover {
+    color: var(--Anthracite);
+}
+
+
 .copyleft {
     display: inline-block;
     font-weight: bold;
@@ -183,18 +209,6 @@ footer p {
     color: var(--Azure);
     font-size: 1.3rem;
     font-family: "Play", sans-serif;
-}
-
-#icon-card {
-    float: right;
-    color: var(--Stone);
-    font-size: 3.3rem;
-    padding-right: 80px;
-    margin-bottom: 0%;
-}
-
-#date-card, #date {
-    color: var(--Azure);
 }
 
 #cityTitle {
