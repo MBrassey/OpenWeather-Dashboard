@@ -23,7 +23,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Aldrich", sans-serif;
 }
 
 header {
@@ -57,9 +57,9 @@ form input {
     color: var(--Night);
     outline: none;
     border: none;
-    padding: 12px;
+    padding: 8px;
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     border: 2px solid var(--Azure);
     border-radius: 12px;
 }
@@ -71,7 +71,10 @@ form input {
 }
 
 .left {
-    padding: 40px;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 0px;
     background-color: var(--Sky);
     color: var(--Zinc);
 }
@@ -83,8 +86,6 @@ form input {
 
 .top {
     padding-top: 25px;
-    padding-right: 20px;
-    padding-left: 20px;
     padding-bottom: 25px;
     border: 2px solid var(--Azure);
     border-radius: 12px;
@@ -106,6 +107,15 @@ form input {
     background-color: var(--Sky);
     color: var(--Zinc);
     padding-top: 12px;
+    margin-top: 20px;
+}
+
+.stone {
+    color: var(--Stone);
+}
+
+.minimize {
+    font-size: 1.7rem;
 }
 
 footer {
@@ -128,6 +138,7 @@ footer p {
     font-weight: bold;
     transform: rotate(180deg);
     font-size: 1.3rem;
+    padding-bottom: 2px;
 }
 
 #cityTitle {
@@ -145,6 +156,14 @@ footer p {
     font-family: "Aldrich", sans-serif;
 }
 
+#forecastTitle {
+    font-family: "Aldrich", sans-serif;
+}
+
+#searchTitle {
+    font-family: "Aldrich", sans-serif;
+}
+
 @media screen and (max-width: 770px) {
     form .form-group {
         flex: 1 100%;
@@ -154,21 +173,26 @@ footer p {
         width: 100%;
     }
 
+    .minimize {
+        font-size: 1.3rem;
+    }
+
     .top {
         padding-top: 15px;
         padding-right: 5px;
         padding-left: 0px;
         padding-bottom: 5px;
-    }
+    }    
 
     h1 {
         text-align: center;
     }
 
+    #searchTitle {
+        font-size: 1.6rem;
+    }    
+
     #cityTitle {
         font-size: 24px;
     }
-}
-
-@media screen and (max-width: 770px) {
 }

@@ -27,7 +27,7 @@
         <main class="row">
             <!-- Left Div - City Search -->
             <div class="left col-md-4">
-                <h3>Search City:</h3>
+                <h3 id="searchTitle">Search City:</h3>
                 <form id="task-form">
                     <div class="form-group">
                         <input type="text" name="task-name" class="text-input" placeholder="City" />
@@ -40,7 +40,7 @@
                 <!-- Top Right Div - Display City Data -->
                 <div class="top">
                     <ul>
-                        <li id="cityTitle">Boise (<span id="date"></span>)</li>
+                        <li id="cityTitle">Boise (<span id="date" class="minimize"></span>) <span id="todayIcon"><i class="fas fa-cloud stone"></i></span></li>
                         <li id="temp" class="cityData">Temperature: 90.9 °F</li>
                         <li id="humidity" class="cityData">Humidity: 41%</li>
                         <li id="wind" class="cityData">Wind Speed: 4.7 MPH</li>
@@ -51,15 +51,53 @@
                 <!-- Bottom Right Div - Display Forecast -->
                 <div class="bottom">
                     <div class="forecastContainer">
-                        <h3>5-Day Forecast:</h3>
+                        <h3 id="forecastTitle">5-Day Forecast:</h3>
+
                         <div class="card">
                             <ul>
-                                <li id="date-card">(date)</li>
+                                <li id="date-card">09/07/2020</li>
                                 <li id="icon-card"><i class="fas fa-sun"></i></li>
                                 <li id="temp-card">Temp: 86.84 °F</li>
                                 <li id="humidity-card">Humidity: 43%</li>
                             </ul>
                         </div>
+
+                        <div class="card">
+                            <ul>
+                                <li id="date-card">09/08/2020</li>
+                                <li id="icon-card"><i class="fas fa-sun"></i></li>
+                                <li id="temp-card">Temp: 86.84 °F</li>
+                                <li id="humidity-card">Humidity: 43%</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <ul>
+                                <li id="date-card">09/09/2020</li>
+                                <li id="icon-card"><i class="fas fa-sun"></i></li>
+                                <li id="temp-card">Temp: 86.84 °F</li>
+                                <li id="humidity-card">Humidity: 43%</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <ul>
+                                <li id="date-card">09/10/2020</li>
+                                <li id="icon-card"><i class="fas fa-sun"></i></li>
+                                <li id="temp-card">Temp: 86.84 °F</li>
+                                <li id="humidity-card">Humidity: 43%</li>
+                            </ul>
+                        </div>
+
+                        <div class="card">
+                            <ul>
+                                <li id="date-card">09/11/2020</li>
+                                <li id="icon-card"><i class="fas fa-sun"></i></li>
+                                <li id="temp-card">Temp: 86.84 °F</li>
+                                <li id="humidity-card">Humidity: 43%</li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
