@@ -40,6 +40,7 @@ header h1 {
     margin-bottom: 5px;
     margin-top: 0;
     font-size: 3.3rem;
+    padding-left: 12px;
 }
 
 li {
@@ -58,6 +59,7 @@ form input {
     outline: none;
     border: none;
     padding: 8px;
+    padding-left: 12px;
     width: 100%;
     min-width: 121px;
     font-size: 1.4rem;
