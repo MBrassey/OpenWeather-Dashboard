@@ -258,6 +258,9 @@ footer p {
         margin-bottom: 12px;
     }
 
+    #icon-card {
+        padding-right: 20px;
+    }
     #cityContainer {
     display: none;
     }
