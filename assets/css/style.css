@@ -59,9 +59,30 @@ form input {
     border: none;
     padding: 8px;
     width: 100%;
+    min-width: 121px;
     font-size: 1.4rem;
     border: 2px solid var(--Azure);
     border-radius: 12px;
+}
+
+form .form-group {
+    margin: 10px 6px 10px 0;
+    flex: 1;
+}
+
+.btn {
+    font-family: "Aldrich", sans-serif;
+    color: var(--Night);
+    background-color: var(--Stone);
+    outline: none;
+    border: none;
+    padding: 8px;
+    width: 55%;
+    min-width: 60px;
+    font-size: 1.4rem;
+    border: 2px solid var(--Azure);
+    border-radius: 12px;
+    margin-right: 0%;
 }
 
 .row {
@@ -110,8 +131,22 @@ form input {
     margin-top: 20px;
 }
 
+.card2 {
+    margin-top: 8px;
+}
+
+.cityButton {
+    color: var(--Anthracite);
+    text-align: center;
+    padding-bottom: 10px;
+}
+
 .stone {
     color: var(--Stone);
+}
+
+.zinc {
+    background-color: var(--Zinc);
 }
 
 .minimize {
@@ -128,6 +163,14 @@ form input {
     font-weight: bold;
 }
 
+.copyleft {
+    display: inline-block;
+    font-weight: bold;
+    transform: rotate(180deg);
+    font-size: 1.3rem;
+    padding-bottom: 2px;
+}
+
 footer {
     width: 100%;
     height: 90px;
@@ -137,18 +180,9 @@ footer {
 
 footer p {
     font-weight: bold;
-    font-family: ;
     color: var(--Azure);
     font-size: 1.3rem;
     font-family: "Play", sans-serif;
-}
-
-.copyleft {
-    display: inline-block;
-    font-weight: bold;
-    transform: rotate(180deg);
-    font-size: 1.3rem;
-    padding-bottom: 2px;
 }
 
 #cityTitle {
@@ -170,9 +204,7 @@ footer p {
     font-family: "Aldrich", sans-serif;
 }
 
-
-
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 818px) {
     form .form-group {
         flex: 1 100%;
     }
@@ -190,7 +222,11 @@ footer p {
         padding-right: 5px;
         padding-left: 0px;
         padding-bottom: 5px;
-    }    
+    }
+
+    .copyleft {
+        padding-top: 1px;
+    }
 
     h1 {
         text-align: center;
@@ -202,5 +238,12 @@ footer p {
 
     #cityTitle {
         font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    #cityContainer {
+    display: none;
     }
 }
