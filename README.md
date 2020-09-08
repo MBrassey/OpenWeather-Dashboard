@@ -1,4 +1,4 @@
-# OpenWeather-Dashboard
+# OpenWeather Dashboard
 Weather Dashboard Concept using OpenWeather API
 
 - [x] [Initial App](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/1)
