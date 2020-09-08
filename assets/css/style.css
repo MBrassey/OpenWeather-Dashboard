@@ -185,6 +185,18 @@ footer p {
     font-family: "Play", sans-serif;
 }
 
+#icon-card {
+    float: right;
+    color: var(--Stone);
+    font-size: 3.3rem;
+    padding-right: 80px;
+    margin-bottom: 0%;
+}
+
+#date-card, #date {
+    color: var(--Azure);
+}
+
 #cityTitle {
     font-size: 2rem;
     font-weight: bold;
@@ -242,8 +254,12 @@ footer p {
 }
 
 @media screen and (max-width: 767px) {
+    .btn {
+        margin-bottom: 12px;
+    }
 
     #cityContainer {
     display: none;
     }
+
 }
