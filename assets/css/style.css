@@ -64,6 +64,7 @@ form input {
     border: none;
     padding: 8px;
     padding-left: 12px;
+    margin-bottom: 12px;
     min-width: 121px;
     width: 100%;
     font-size: 1.4rem;
@@ -77,6 +78,7 @@ form .form-group {
 }
 
 .btn {
+    flex: 1;
     font-family: "Aldrich", sans-serif;
     color: var(--Night);
     background-color: var(--Stone);

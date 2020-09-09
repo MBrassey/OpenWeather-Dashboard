@@ -2,6 +2,26 @@ var todaysDate = moment().format("L");
 
 var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
 
+var searchFormEl = document.querySelector("#search-form");
+
+var searchCityEl = document.querySelector("#city");
+
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+
+    // Get Search Terms
+    var cityName = searchCityEl.value.trim();
+
+    if (cityName) {
+        getWeatherData(cityName);
+        searchCityEl.value = "";
+    } else {
+        alert("Please enter a City");
+    }
+
+    console.log(cityName);
+};
+
 function getWeatherData(cityName) {
     var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
@@ -71,6 +91,7 @@ var presentData = function (cityName, current, forecast) {
 
     // Generate Todays Weather Card
     var iconURL1 = "https://openweathermap.org/img/wn/" + currentObj.icon + "@2x.png";
+    $("#today").empty();
     $("#today").append(
         '<ul><li id="cityTitle">'+ cityName +' (<span id="date" class="minimize">' +
             todaysDate +
@@ -85,6 +106,7 @@ var presentData = function (cityName, current, forecast) {
             "</span></li></ul>"
     );
 
+    $("#fcst").empty();
     for (var i = 1; i < 6; i++) {
         // Set Appropriate Date
         var forecastDate = moment().add(i, "days").format("L");
@@ -122,3 +144,4 @@ var initial = function () {
 };
 
 initial();
+searchFormEl.addEventListener("submit", formSubmitHandler);
