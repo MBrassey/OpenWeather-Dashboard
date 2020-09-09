@@ -5,7 +5,7 @@ var setDate = function () {
 var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
 
 function getWeatherData(cityName) {
-    var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
+    var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     // Query Open Weather API to Get "coord"
     fetch(dataApi)
@@ -15,7 +15,7 @@ function getWeatherData(cityName) {
                     // Generate One Call Endpoint With Returned Coordinates
                     var lat = currentData.coord.lat;
                     var lon = currentData.coord.lon;
-                    var forecastApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly&appid=" + apiKey;
+                    var forecastApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly&units=imperial&appid=" + apiKey;
 
                     fetch(forecastApi)
                         .then(function (response) {
@@ -69,7 +69,7 @@ var presentData = function (current, forecast) {
         // Generate Forecast Cards
         var iconURL = "https://openweathermap.org/img/wn/"+ icon + "@2x.png";
         $("#fcst").append(
-            '<div class="card"><ul><li class="date-card" class="sm-data">'+forecastDate+'</li><li class="icon-card" class="sm-data"><i class="fas"><img src="'+iconURL+'" alt="'+altTxt+'"></i></li><li class="temp-card">Temp: <span class="sm-data">'+temp+'</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">'+humid+'</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">'+wind+'</span> MPH</li></ul></div>'
+            '<div class="card"><ul><li class="icon-card" class="sm-data"><img src="'+iconURL+'" alt="'+altTxt+'"></li><li class="date-card" class="sm-data">'+forecastDate+'</li><li class="temp-card">Temp: <span class="sm-data">'+temp+'</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">'+humid+'</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">'+wind+'</span> MPH</li></ul></div>'
         );
             console.log(iconURL);
         // e.preventDefault();
@@ -78,7 +78,7 @@ var presentData = function (current, forecast) {
 
 var initial = function () {
     setDate();
-    getWeatherData("Tucson");
+    getWeatherData("mobile");
 };
 
 initial();
