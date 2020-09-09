@@ -23,7 +23,7 @@ function getWeatherData(cityName) {
                                     var forecast = forecastData; // Result From forecastApi
 
                                     // Send Data to be Compiled
-                                    presentData(current, forecast);
+                                    presentData(cityName, current, forecast);
                                 });
                             } else {
                                 alert("Error: " + response.statusText);
@@ -42,8 +42,7 @@ function getWeatherData(cityName) {
         });
 }
 
-var presentData = function (current, forecast) {
-
+var presentData = function (cityName, current, forecast) {
     currentObj = {
         city: current.name,
         country: current.sys.country,
@@ -65,19 +64,30 @@ var presentData = function (current, forecast) {
     } else if (currentObj.uvi > 7 && currentObj.uvi < 11) {
         uvColor = "high";
     } else if (currentObj.uvi > 10) {
-        uvColor = "Extreme";
+        uvColor = "extreme";
     } else {
         uvColor = "low";
     }
 
     // Generate Todays Weather Card
-    var iconURL1 = "https://openweathermap.org/img/wn/"+ currentObj.icon + "@2x.png";
-    $("#today").append('<ul><li id="cityTitle">Boise (<span id="date" class="minimize">'+todaysDate+'</span>) <span id="todayIcon"><img src="'+iconURL1+'" alt="'+currentObj.altTxt+'"></span></li><li id="temp" class="cityData">Temperature: <span class="data">90.9</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">41%</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">4.7</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="'+ uvColor +'">'+ currentObj.uvi +'</span></li></ul>');
+    var iconURL1 = "https://openweathermap.org/img/wn/" + currentObj.icon + "@2x.png";
+    $("#today").append(
+        '<ul><li id="cityTitle">'+ cityName +' (<span id="date" class="minimize">' +
+            todaysDate +
+            '</span>) <span id="todayIcon"><img src="' +
+            iconURL1 +
+            '" alt="' +
+            currentObj.altTxt +
+            '"></span></li><li id="temp" class="cityData">Temperature: <span class="data">90.9</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">41%</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">4.7</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="' +
+            uvColor +
+            '">' +
+            currentObj.uvi +
+            "</span></li></ul>"
+    );
 
     for (var i = 1; i < 6; i++) {
-
         // Set Appropriate Date
-        var forecastDate = moment().add(i, 'days').format("L");
+        var forecastDate = moment().add(i, "days").format("L");
 
         // Assign Forecast Variables
         temp = forecast.daily[i].temp.day;
@@ -87,17 +97,28 @@ var presentData = function (current, forecast) {
         altTxt = forecast.daily[i].weather[0].description;
 
         // Generate Forecast Cards
-        var iconURL = "https://openweathermap.org/img/wn/"+ icon + "@2x.png";
+        var iconURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
         $("#fcst").append(
-            '<div class="card"><ul><li class="icon-card" class="sm-data"><img src="'+iconURL+'" alt="'+altTxt+'"></li><li class="date-card" class="sm-data">'+forecastDate+'</li><li class="temp-card">Temp: <span class="sm-data">'+temp+'</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">'+humid+'</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">'+wind+'</span> MPH</li></ul></div>'
+            '<div class="card"><ul><li class="icon-card" class="sm-data"><img src="' +
+                iconURL +
+                '" alt="' +
+                altTxt +
+                '"></li><li class="date-card" class="sm-data">' +
+                forecastDate +
+                '</li><li class="temp-card">Temp: <span class="sm-data">' +
+                temp +
+                '</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">' +
+                humid +
+                '</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">' +
+                wind +
+                "</span> MPH</li></ul></div>"
         );
-            console.log(iconURL);
         // e.preventDefault();
     }
 };
 
 var initial = function () {
-    getWeatherData("mobile");
+    getWeatherData("kona");
 };
 
 initial();
