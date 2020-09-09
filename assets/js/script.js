@@ -55,9 +55,24 @@ var presentData = function (current, forecast) {
         altTxt: forecast.daily[0].weather[0].description,
     };
 
+    // Calculate UVI Color
+    if (currentObj.uvi < 3) {
+        uvColor = "low";
+    } else if (currentObj.uvi > 2 && currentObj.uvi < 6) {
+        uvColor = "low-mid";
+    } else if (currentObj.uvi > 5 && currentObj.uvi < 8) {
+        uvColor = "mid";
+    } else if (currentObj.uvi > 7 && currentObj.uvi < 11) {
+        uvColor = "high";
+    } else if (currentObj.uvi > 10) {
+        uvColor = "Extreme";
+    } else {
+        uvColor = "low";
+    }
+
     // Generate Todays Weather Card
     var iconURL1 = "https://openweathermap.org/img/wn/"+ currentObj.icon + "@2x.png";
-    $("#today").append('<ul><li id="cityTitle">Boise (<span id="date" class="minimize">'+todaysDate+'</span>) <span id="todayIcon"><img src="'+iconURL1+'" alt="'+currentObj.altTxt+'"></span></li><li id="temp" class="cityData">Temperature: <span class="data">90.9</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">41%</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">4.7</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="uvColor">9.49</span></li></ul>');
+    $("#today").append('<ul><li id="cityTitle">Boise (<span id="date" class="minimize">'+todaysDate+'</span>) <span id="todayIcon"><img src="'+iconURL1+'" alt="'+currentObj.altTxt+'"></span></li><li id="temp" class="cityData">Temperature: <span class="data">90.9</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">41%</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">4.7</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="'+ uvColor +'">'+ currentObj.uvi +'</span></li></ul>');
 
     for (var i = 1; i < 6; i++) {
 

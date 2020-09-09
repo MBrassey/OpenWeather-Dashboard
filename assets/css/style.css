@@ -14,6 +14,10 @@
     --Zinc: #cfd2d0;
     --Absinthe-alpha: rgba(163, 222, 158, 0.8);
     --Shadow-Alpha: rgba(0, 0, 0, 0.5);
+    --Low: #a6de9e;
+    --Low-Mid: #deda9e;
+    --Mid: #deb29e;
+    --Extreme: #da3b3b;
 }
 
 body {
@@ -164,8 +168,7 @@ form .form-group {
     font-size: 1.7rem;
 }
 
-.data,
-#uvColor {
+.data {
     color: var(--Anthracite);
     font-weight: bold;
 }
@@ -218,6 +221,36 @@ footer p {
     font-family: "Play", sans-serif;
 }
 
+#low {
+    background-color: var(--Low);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+#low-mid {
+    background-color: var(--Low-Mid);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+#mid {
+    background-color: var(--Mid);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+#high {
+    background-color: var(--Sakura);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+#extreme {
+    background-color: var(--Extreme);
+    border-radius: 12px;
+    padding: 6px;
+}
+
 #cityTitle {
     font-size: 2rem;
     font-weight: bold;
@@ -225,12 +258,6 @@ footer p {
 
 #cityData {
     font-weight: bold;
-}
-
-#uvColor {
-    background-color: var(--Sakura);
-    border-radius: 12px;
-    padding: 4px;
 }
 
 #cityTitle,
