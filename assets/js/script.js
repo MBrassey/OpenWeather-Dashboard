@@ -1,3 +1,5 @@
+var searchedCities = JSON.parse(localStorage.getItem("searchedCities") || '[{"city": "New York"},{"name": "Los Angeles"},{"name": "Chicago"},{"name": "Houston"},{"name": "Phoenix"},{"name": "Philadelphia"},{"name": "San Diego"},{"name": "Jacksonville"},{"name": "Columbus"},{"name": "San Francisco"},{"name": "Nashville"},{"name": "Seattle"}]');
+
 var todaysDate = moment().format("L");
 
 var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
@@ -28,6 +30,7 @@ function getWeatherData(cityName) {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (currentData) {
+
                     // Generate One Call Endpoint With Returned Coordinates
                     var lat = currentData.coord.lat;
                     var lon = currentData.coord.lon;
@@ -65,12 +68,13 @@ var presentData = function (cityName, current, forecast) {
         city: current.name,
         country: current.sys.country,
         icon: forecast.daily[0].weather[0].icon,
-        temp: current.sys.temp,
-        humid: current.sys.humidity,
+        temp: current.main.temp,
+        humid: current.main.humidity,
         wind: current.wind.speed,
         uvi: forecast.daily[0].uvi,
         altTxt: forecast.daily[0].weather[0].description,
     };
+    console.log(currentObj.humid);
 
     // Calculate UVI Color
     if (currentObj.uvi < 3) {
@@ -101,7 +105,7 @@ var presentData = function (cityName, current, forecast) {
             iconURL1 +
             '" alt="' +
             currentObj.altTxt +
-            '"></span></li><li id="temp" class="cityData">Temperature: <span class="data">90.9</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">41%</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">4.7</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="' +
+            '"></span></li><li id="temp" class="cityData">Temperature: <span class="data">'+ currentObj.temp +'</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">'+ currentObj.humid +'</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">'+ currentObj.wind +'</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="' +
             uvColor +
             '">' +
             currentObj.uvi +
@@ -110,6 +114,7 @@ var presentData = function (cityName, current, forecast) {
 
     $("#fcst").empty();
     for (var i = 1; i < 6; i++) {
+
         // Set Appropriate Date
         var forecastDate = moment().add(i, "days").format("L");
 
@@ -141,7 +146,17 @@ var presentData = function (cityName, current, forecast) {
     console.log("Displaying Weather For: " + currentObj.city + ", " + currentObj.country + ".");
 };
 
+// Process & Save Searched Cities
+var saveSearch = function () {
+
+    // Push User's Search Term to LocalStorage
+    searchedCities.push(cityName);
+    // highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
+    localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+};
+
 var initial = function () {
+
     // Geo Locate User's City
     $.get(
         "https://ipinfo.io",
