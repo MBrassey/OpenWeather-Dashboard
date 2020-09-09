@@ -1,6 +1,4 @@
-var setDate = function () {
-    $("#date").text(moment().format("L"));
-};
+var todaysDate = moment().format("L");
 
 var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
 
@@ -45,14 +43,21 @@ function getWeatherData(cityName) {
 }
 
 var presentData = function (current, forecast) {
+
     currentObj = {
         city: current.name,
         country: current.sys.country,
+        icon: forecast.daily[0].weather[0].icon,
         temp: current.sys.temp,
         humid: current.sys.humidity,
         wind: current.wind.speed,
         uvi: forecast.daily[0].uvi,
+        altTxt: forecast.daily[0].weather[0].description,
     };
+
+    // Generate Todays Weather Card
+    var iconURL1 = "https://openweathermap.org/img/wn/"+ currentObj.icon + "@2x.png";
+    $("#today").append('<ul><li id="cityTitle">Boise (<span id="date" class="minimize">'+todaysDate+'</span>) <span id="todayIcon"><img src="'+iconURL1+'" alt="'+currentObj.altTxt+'"></span></li><li id="temp" class="cityData">Temperature: <span class="data">90.9</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">41%</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">4.7</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="uvColor">9.49</span></li></ul>');
 
     for (var i = 1; i < 6; i++) {
 
@@ -77,7 +82,6 @@ var presentData = function (current, forecast) {
 };
 
 var initial = function () {
-    setDate();
     getWeatherData("mobile");
 };
 
