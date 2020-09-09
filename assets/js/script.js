@@ -5,7 +5,7 @@ var setDate = function () {
 var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
 
 function getWeatherData(cityName) {
-    var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=Boise&appid=" + apiKey;
+    var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
 
     // Query Open Weather API to Get "coord"
     fetch(dataApi)
@@ -78,7 +78,7 @@ var presentData = function (current, forecast) {
 
 var initial = function () {
     setDate();
-    getWeatherData("Boise");
+    getWeatherData("Tucson");
 };
 
 initial();
