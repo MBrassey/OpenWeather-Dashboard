@@ -23,7 +23,7 @@ var formSubmitHandler = function (event) {
 };
 
 function getWeatherData(cityName) {
-    var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
+    var dataApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     // Query Open Weather API to Get "coord"
     fetch(dataApi)
