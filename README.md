@@ -7,6 +7,7 @@ Weather Dashboard Concept using OpenWeather API
 - [x] [Forecast Data](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/4)
 - [x] [Stylize](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/5)
 - [x] [Touch-Up](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/6)
+- [x] [GeoLocate](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/7)
 <h6><p align="right">[ Click the image below to view the <a href="https://luc1dlife.github.io/OpenWeather-Dashboard/">webapplication</a> ]</p></h6>
 <a href="https://luc1dlife.github.io/OpenWeather-Dashboard/">
   <img src="https://raw.githubusercontent.com/luc1dLife/OpenWeather-Dashboard/master/assets/img/Preview.png" alt="Web App Screeshot">
