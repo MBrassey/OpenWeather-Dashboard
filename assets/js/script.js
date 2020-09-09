@@ -18,11 +18,10 @@ var formSubmitHandler = function (event) {
     } else {
         alert("Please enter a City");
     }
-
-    console.log(cityName);
 };
 
 function getWeatherData(cityName) {
+
     var dataApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     // Query Open Weather API to Get "coord"
@@ -93,7 +92,7 @@ var presentData = function (cityName, current, forecast) {
     var iconURL1 = "https://openweathermap.org/img/wn/" + currentObj.icon + "@2x.png";
     $("#today").empty();
     $("#today").append(
-        '<ul><li id="cityTitle">'+ cityName +' (<span id="date" class="minimize">' +
+        '<ul><li id="cityTitle">'+ currentObj.city +', '+currentObj.country+' (<span id="date" class="minimize">' +
             todaysDate +
             '</span>) <span id="todayIcon"><img src="' +
             iconURL1 +
@@ -135,12 +134,19 @@ var presentData = function (cityName, current, forecast) {
                 wind +
                 "</span> MPH</li></ul></div>"
         );
-        // e.preventDefault();
     }
+    console.log("Displaying Weather For: " + currentObj.city + ", " + currentObj.country + "." );
 };
 
 var initial = function () {
-    getWeatherData("kona");
+
+    // Geo Locate User's City
+    $.get("https://ipinfo.io", function (response) {
+        getWeatherData(response.city);
+        //locatedCity = response.city;
+    }, "jsonp");
+
+    //getWeatherData("Boise");
 };
 
 initial();
