@@ -164,7 +164,8 @@ form .form-group {
     font-size: 1.7rem;
 }
 
-.data, #uvColor {
+.data,
+#uvColor {
     color: var(--Anthracite);
     font-weight: bold;
 }
@@ -182,7 +183,8 @@ form .form-group {
     margin-bottom: 0%;
 }
 
-.date-card, #date {
+.date-card,
+#date {
     color: var(--Azure);
 }
 
@@ -193,7 +195,6 @@ form .form-group {
 .fas:hover {
     color: var(--Anthracite);
 }
-
 
 .copyleft {
     display: inline-block;
@@ -232,7 +233,9 @@ footer p {
     padding: 4px;
 }
 
-#cityTitle, #forecastTitle, #searchTitle {
+#cityTitle,
+#forecastTitle,
+#searchTitle {
     font-family: "Aldrich", sans-serif;
 }
 
@@ -266,7 +269,7 @@ footer p {
 
     #searchTitle {
         font-size: 1.6rem;
-    }    
+    }
 
     #cityTitle {
         font-size: 24px;
@@ -282,14 +285,13 @@ footer p {
         padding-right: 20px;
     }
     #cityContainer {
-    display: none;
+        display: none;
     }
-
 }
 
 @media screen and (max-width: 375px) {
     li {
-        font-size: .9rem;
+        font-size: 0.9rem;
     }
 
     .cityData {
@@ -303,5 +305,4 @@ footer p {
     #date {
         font-size: 1.2rem;
     }
-
 }
