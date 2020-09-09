@@ -21,7 +21,6 @@ var formSubmitHandler = function (event) {
 };
 
 function getWeatherData(cityName) {
-
     var dataApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     // Query Open Weather API to Get "coord"
@@ -92,7 +91,11 @@ var presentData = function (cityName, current, forecast) {
     var iconURL1 = "https://openweathermap.org/img/wn/" + currentObj.icon + "@2x.png";
     $("#today").empty();
     $("#today").append(
-        '<ul><li id="cityTitle">'+ currentObj.city +', '+currentObj.country+' (<span id="date" class="minimize">' +
+        '<ul><li id="cityTitle">' +
+            currentObj.city +
+            ", " +
+            currentObj.country +
+            ' (<span id="date" class="minimize">' +
             todaysDate +
             '</span>) <span id="todayIcon"><img src="' +
             iconURL1 +
@@ -135,18 +138,19 @@ var presentData = function (cityName, current, forecast) {
                 "</span> MPH</li></ul></div>"
         );
     }
-    console.log("Displaying Weather For: " + currentObj.city + ", " + currentObj.country + "." );
+    console.log("Displaying Weather For: " + currentObj.city + ", " + currentObj.country + ".");
 };
 
 var initial = function () {
-
     // Geo Locate User's City
-    $.get("https://ipinfo.io", function (response) {
-        getWeatherData(response.city);
-        //locatedCity = response.city;
-    }, "jsonp");
-
-    //getWeatherData("Boise");
+    $.get(
+        "https://ipinfo.io",
+        function (response) {
+            getWeatherData(response.city);
+            //locatedCity = response.city;
+        },
+        "jsonp"
+    );
 };
 
 initial();
