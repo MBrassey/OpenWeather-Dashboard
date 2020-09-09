@@ -55,15 +55,23 @@ var presentData = function (current, forecast) {
     };
 
     for (var i = 1; i < 6; i++) {
-        $("#fcst").append(
-            '<div class="card"><ul><li class="date-card" class="sm-data">09/07/2020</li><li class="icon-card" class="sm-data"><i class="fas fa-sun"></i></li><li class="temp-card">Temp: <span class="sm-data">86.84</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">43</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">4</span> MPH</li></ul></div>'
-        );
 
-        // date forecast.daily+i.temp
-        // temp forecast.daily+i.temp.day
-        // humid forecast.daily+i.humidity
-        // wind forecast.daily+i.wind_speed
-        // icon forecast.daily+i.weather[0].icon
+        // Set Appropriate Date
+        var forecastDate = moment().add(i, 'days').format("L");
+
+        // Assign Forecast Variables
+        temp = forecast.daily[i].temp.day;
+        icon = forecast.daily[i].weather[0].icon;
+        humid = forecast.daily[i].humidity;
+        wind = forecast.daily[i].wind_speed;
+        altTxt = forecast.daily[i].weather[0].description;
+
+        // Generate Forecast Cards
+        var iconURL = "https://openweathermap.org/img/wn/"+ icon + "@2x.png";
+        $("#fcst").append(
+            '<div class="card"><ul><li class="date-card" class="sm-data">'+forecastDate+'</li><li class="icon-card" class="sm-data"><i class="fas"><img src="'+iconURL+'" alt="'+altTxt+'"></i></li><li class="temp-card">Temp: <span class="sm-data">'+temp+'</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">'+humid+'</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">'+wind+'</span> MPH</li></ul></div>'
+        );
+            console.log(iconURL);
         // e.preventDefault();
     }
 };
