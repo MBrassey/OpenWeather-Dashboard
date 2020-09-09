@@ -26,11 +26,11 @@ function getWeatherData(cityName) {
                     .then(function (response) {
                         if (response.ok) {
                             response.json().then(function(data) {    
+                                var current = data.current;
                                 var daily = data.daily;
-                                var one = data.daily[1].temp.day;
                                 
-                                // Send Data to be Compiled
-                                console.log(one);                                
+                                // Send Data to be Compiled                              
+                                compileData(current, daily);
                             }
                             );
                         } else {
@@ -50,6 +50,10 @@ function getWeatherData(cityName) {
         .catch(function (error) {
             alert("Unable to Access Open Weather");
         });
+}
+
+var compileData = function(current, daily) {
+    console.log("daily:" + daily + "current:" + current);  
 }
 
 var initial = function() {
