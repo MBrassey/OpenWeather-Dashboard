@@ -2,51 +2,47 @@ var setDate = function () {
     $("#date").text(moment().format("L"));
 };
 
+var currentObj = [];
+var futureObj = [];
+
+var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
+
 function getWeatherData(cityName) {
 
-    // create the address to access the api for the chosen city
-    var weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=718523b17d4bbd2336cf57c34cc3836a";
-    var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=718523b17d4bbd2336cf57c34cc3836a";
+    var dataApi = "http://api.openweathermap.org/data/2.5/weather?q=Boise&appid=" + apiKey;
 
-    // Query Open Weather API
-    fetch(weatherApiUrl)
+    // Query Open Weather API to Get "coord", "weather"
+    fetch(dataApi)
         .then(function (response) {
             if (response.ok) {
-                response.json().then(function (data) {
+                response.json().then(function(data) {    
+
+                    // Generate One Call Endpoint With Coordinates
                     var lat = data.coord.lat;
                     var lon = data.coord.lon;
-
-                    var uvApiUrl = "https://api.openweathermap.org/data/2.5/uvi?appid=718523b17d4bbd2336cf57c34cc3836a&lat=" + lat + "&lon=" + lon;
+                    var forecastApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=" + apiKey;
                     
-                    fetch(uvApiUrl)
-                        .then(function (response) {
-                            if (response.ok) {
-                                response.json().then(function (uvData) {
-                                    fetch(forecastUrl)
-                                        .then(function (response) {
-                                            if (response.ok) {
-                                                response.json().then(function (forecastData) {
-
-                                                    // Compile Weather Data
-                                                    // compileWeatherData(data, uvData, forecastData, cityName);
-                                                    console.log(data, uvData, forecastData, cityName);
-                                                });
-                                            } else {
-                                                alert("Error: " + response.statusText);
-                                            }
-                                        })
-                                        .catch(function (error) {
-                                            alert("Unable to Access Open Weather");
-                                        });
-                                });
-                            } else {
-                                alert("Error: " + response.statusText);
+                    fetch(forecastApi)
+                    .then(function (response) {
+                        if (response.ok) {
+                            response.json().then(function(data) {    
+                                var daily = data.daily;
+                                var one = data.daily[1].temp.day;
+                                
+                                // Send Data to be Compiled
+                                console.log(one);                                
                             }
-                        })
-                        .catch(function (error) {
-                            alert("Unable to Access Open Weather");
-                        });
-                });
+                            );
+                        } else {
+                            alert("Error: " + response.statusText);
+                        }
+                    })
+                    .catch(function (error) {
+                        alert("Unable to Access Open Weather");
+                    });
+
+                }
+                );
             } else {
                 alert("Error: " + response.statusText);
             }
