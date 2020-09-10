@@ -1,5 +1,3 @@
-var searchedCities = JSON.parse(localStorage.getItem("searchedCities") || '[{"city": "New York"},{"name": "Los Angeles"},{"name": "Chicago"},{"name": "Houston"},{"name": "Phoenix"},{"name": "Philadelphia"},{"name": "San Diego"},{"name": "Jacksonville"},{"name": "Columbus"},{"name": "San Francisco"},{"name": "Nashville"},{"name": "Seattle"}]');
-
 var todaysDate = moment().format("L");
 
 var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
@@ -13,7 +11,7 @@ var formSubmitHandler = function (event) {
 
     // Get Search Terms
     var cityName = searchCityEl.value.trim();
-
+    saveSearch(cityName);
     if (cityName) {
         getWeatherData(cityName);
         searchCityEl.value = "";
@@ -23,6 +21,8 @@ var formSubmitHandler = function (event) {
 };
 
 function getWeatherData(cityName) {
+
+    // Define OpenWeather Enpoint With Searched CityName
     var dataApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
     // Query Open Weather API to Get "coord"
@@ -64,6 +64,17 @@ function getWeatherData(cityName) {
 }
 
 var presentData = function (cityName, current, forecast) {
+
+    // Store & Present User's Current Location
+    searchedCities = JSON.parse(localStorage.getItem("searchedCities") || '[{"city": "'+ cityName +'"},{"city": "New York"},{"name": "Los Angeles"},{"name": "Chicago"},{"name": "Houston"},{"name": "Phoenix"},{"name": "Philadelphia"},{"name": "San Diego"},{"name": "Jacksonville"},{"name": "Columbus"},{"name": "San Francisco"},{"name": "Seattle"}]');
+    $("#cityContainer").empty();
+
+    for (var j = 0; j < 8; j++) {
+    $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">'+ searchedCities[0].city +'</span></div>');
+    console.log(j);
+    }
+
+    // Define Current Weather Object
     currentObj = {
         city: current.name,
         country: current.sys.country,
@@ -74,7 +85,6 @@ var presentData = function (cityName, current, forecast) {
         uvi: forecast.daily[0].uvi,
         altTxt: forecast.daily[0].weather[0].description,
     };
-    console.log(currentObj.humid);
 
     // Calculate UVI Color
     if (currentObj.uvi < 3) {
@@ -147,10 +157,10 @@ var presentData = function (cityName, current, forecast) {
 };
 
 // Process & Save Searched Cities
-var saveSearch = function () {
+var saveSearch = function (cityName) {
 
     // Push User's Search Term to LocalStorage
-    searchedCities.push(cityName);
+    searchedCities.push({"city": "Boise"});
     // highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
     localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
 };
@@ -158,11 +168,11 @@ var saveSearch = function () {
 var initial = function () {
 
     // Geo Locate User's City
+    console.log("Your IP, Location Etc:");
     $.get(
         "https://ipinfo.io",
         function (response) {
             getWeatherData(response.city);
-            //locatedCity = response.city;
         },
         "jsonp"
     );
