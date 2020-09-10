@@ -6,12 +6,14 @@ var searchFormEl = document.querySelector("#search-form");
 
 var searchCityEl = document.querySelector("#city");
 
+var cities = {};
+
 var formSubmitHandler = function (event) {
     event.preventDefault();
 
     // Get Search Terms
     var cityName = searchCityEl.value.trim();
-    saveSearch(cityName);
+
     if (cityName) {
         getWeatherData(cityName);
         searchCityEl.value = "";
@@ -21,7 +23,6 @@ var formSubmitHandler = function (event) {
 };
 
 function getWeatherData(cityName) {
-
     // Define OpenWeather Enpoint With Searched CityName
     var dataApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
@@ -30,21 +31,34 @@ function getWeatherData(cityName) {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (currentData) {
-
                     // Generate One Call Endpoint With Returned Coordinates
                     var lat = currentData.coord.lat;
                     var lon = currentData.coord.lon;
                     var forecastApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly&units=imperial&appid=" + apiKey;
-
+                    var uviApi = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
+                    
                     fetch(forecastApi)
                         .then(function (response) {
                             if (response.ok) {
                                 response.json().then(function (forecastData) {
-                                    var current = currentData; // Result From dataApi
-                                    var forecast = forecastData; // Result From forecastApi
+                                    fetch(uviApi)
+                                        .then(function (response) {
+                                            if (response.ok) {
+                                                response.json().then(function (uviData) {
+                                                    var current = currentData; // Result From dataApi
+                                                    var forecast = forecastData; // Result From forecastApi
+                                                    var uvi = uviData; // Result From uviApi
 
-                                    // Send Data to be Compiled
-                                    presentData(cityName, current, forecast);
+                                                    // Send Data to be Compiled
+                                                    presentData(cityName, current, forecast, uvi);
+                                                });
+                                            } else {
+                                                alert("Error: " + response.statusText);
+                                            }
+                                        })
+                                        .catch(function (error) {
+                                            alert("Unable to Access Open Weather");
+                                        });
                                 });
                             } else {
                                 alert("Error: " + response.statusText);
@@ -63,16 +77,31 @@ function getWeatherData(cityName) {
         });
 }
 
-var presentData = function (cityName, current, forecast) {
+var storeCity = function (cityName) {
+    localStorage.setItem("cities", JSON.stringify(cityName));
+};
 
-    // Store & Present User's Current Location
-    searchedCities = JSON.parse(localStorage.getItem("searchedCities") || '[{"city": "'+ cityName +'"},{"city": "New York"},{"name": "Los Angeles"},{"name": "Chicago"},{"name": "Houston"},{"name": "Phoenix"},{"name": "Philadelphia"},{"name": "San Diego"},{"name": "Jacksonville"},{"name": "Columbus"},{"name": "San Francisco"},{"name": "Seattle"}]');
+var listSavedSearches = function () {
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+    console.log(storedCities);
+
+    // Append Div & Span to Page
+    $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">' + storedCities + "</span></div>");
+
+    for (var i = 0, len = localStorage.length; i < len; i++) {
+        var key = localStorage.key(i);
+        var value = localStorage[key];
+        console.log(key + " => " + value);
+    }
+};
+
+var presentData = function (cityName, current, forecast, uvi) {
+    storeCity(cityName);
+
+    // Clear Saved Searches Container
     $("#cityContainer").empty();
 
-    for (var j = 0; j < 8; j++) {
-    $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">'+ searchedCities[0].city +'</span></div>');
-    console.log(j);
-    }
+    listSavedSearches();
 
     // Define Current Weather Object
     currentObj = {
@@ -82,7 +111,7 @@ var presentData = function (cityName, current, forecast) {
         temp: current.main.temp,
         humid: current.main.humidity,
         wind: current.wind.speed,
-        uvi: forecast.daily[0].uvi,
+        uvi: uvi.value,
         altTxt: forecast.daily[0].weather[0].description,
     };
 
@@ -115,7 +144,13 @@ var presentData = function (cityName, current, forecast) {
             iconURL1 +
             '" alt="' +
             currentObj.altTxt +
-            '"></span></li><li id="temp" class="cityData">Temperature: <span class="data">'+ currentObj.temp +'</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">'+ currentObj.humid +'</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">'+ currentObj.wind +'</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="' +
+            '"></span></li><li id="temp" class="cityData">Temperature: <span class="data">' +
+            currentObj.temp +
+            '</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">' +
+            currentObj.humid +
+            '</span></li><li id="wind" class="cityData">Wind Speed: <span class="data">' +
+            currentObj.wind +
+            '</span> MPH</li><li id="uv" class="cityData">UV Index: <span id="' +
             uvColor +
             '">' +
             currentObj.uvi +
@@ -124,7 +159,6 @@ var presentData = function (cityName, current, forecast) {
 
     $("#fcst").empty();
     for (var i = 1; i < 6; i++) {
-
         // Set Appropriate Date
         var forecastDate = moment().add(i, "days").format("L");
 
@@ -156,17 +190,7 @@ var presentData = function (cityName, current, forecast) {
     console.log("Displaying Weather For: " + currentObj.city + ", " + currentObj.country + ".");
 };
 
-// Process & Save Searched Cities
-var saveSearch = function (cityName) {
-
-    // Push User's Search Term to LocalStorage
-    searchedCities.push({"city": "Boise"});
-    // highScores.sort((a, b) => (a.score < b.score ? 1 : -1));
-    localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
-};
-
 var initial = function () {
-
     // Geo Locate User's City
     console.log("Your IP, Location Etc:");
     $.get(
