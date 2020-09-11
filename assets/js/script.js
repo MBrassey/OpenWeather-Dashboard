@@ -12,7 +12,8 @@ var formSubmitHandler = function (event) {
     event.preventDefault();
 
     // Get Search Terms
-    var cityName = searchCityEl.value.trim();
+    var cityName0 = searchCityEl.value.trim();
+    const cityName = cityName0.charAt(0).toUpperCase() + cityName0.slice(1);
 
     if (cityName) {
         getWeatherData(cityName);
@@ -83,22 +84,29 @@ var storeCity = function (cityName) {
 
     cities.push(cityName);
 
-    console.log(cities);
+    //console.log(cities);
 
     localStorage.setItem("city", JSON.stringify(cities));
 };
+
+var presentStoredCities = function(cityName) {
+        // Clear Saved Searches Container
+        $("#cityContainer").empty();
+        var storedCities = JSON.parse(localStorage.getItem('city'));
+        const reversed = storedCities.reverse();
+        // Present 8 storedCities
+        $.each(reversed, function(key, value) {
+                $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">' + value + '</span></div>');
+            console.log(reversed[7]);
+
+          });    
+}
 
 
 var presentData = function (cityName, current, forecast, uvi) {
     storeCity(cityName);
 
-    // Clear Saved Searches Container
-    $("#cityContainer").empty();
-    var storedCities = JSON.parse(localStorage.getItem('city'));
-    $.each(storedCities, function(key, value) {
-        console.log(value);
-        $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">' + value + '</span></div>');
-      });
+    presentStoredCities(cityName);
 
     // Define Current Weather Object
     currentObj = {
