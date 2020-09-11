@@ -82,7 +82,8 @@ var storeCity = function (cityName) {
     var cities = [];
     cities = JSON.parse(localStorage.getItem("city")) || [];
 
-    cities.push(cityName);
+    // Push City to LocalStorage if Not Already Present
+    cities.indexOf(cityName) === -1 ? cities.push(cityName) : console.log(cityName + " is already stored.");
 
     //console.log(cities);
 
