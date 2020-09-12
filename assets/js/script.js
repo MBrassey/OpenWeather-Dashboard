@@ -106,9 +106,6 @@ var presentStoredCities = function (cityName) {
         // Present 8 storedCities
         $.each(reversed, function (key, value) {
             $("#cityContainer").append('<div id="' + value + '" class="card card2 zinc"><span class="cityButton">' + value + "</span></div>");
-            console.log(value);
-            //var cityButtonEl = document.querySelector(value);
-            //cityButtonEl.addEventListener("click", getWeatherData(value));
         });
     } else {
         var times = 8;
@@ -116,6 +113,18 @@ var presentStoredCities = function (cityName) {
             $("#cityContainer").append('<div id="' + reversed[i] + '" class="card card2 zinc"><span class="cityButton">' + reversed[i] + "</span></div>");
         }
     }
+
+    var cityButtons = document.querySelectorAll(".cityButton");
+
+    cityButtons.forEach(function (cityBtn) {
+        cityBtn.addEventListener("click", function (event) {
+            var loadCity = event.target.innerText;
+            if (loadCity) {
+                getWeatherData(loadCity);
+            }
+        })
+    })
+
 };
 
 var presentData = function (cityName, current, forecast, uvi) {
@@ -265,16 +274,16 @@ $("#trash").droppable({
     accept: ".card2",
     tolerance: "touch", 
     drop: function(event, ui) {
-      console.log("drop");
+      //console.log("drop");
       ui.draggable.remove()
       $(".bottom-trash").removeClass("bottom-trash-active");
     },
     over: function(event, ui) {
-      console.log("over");
+      //console.log("over");
       $(".bottom-trash").addClass("bottom-trash-active");
     },
     out: function(event, ui) {
-      console.log("out")
+      //console.log("out")
       $(".bottom-trash").removeClass("bottom-trash-active");
     }
   });

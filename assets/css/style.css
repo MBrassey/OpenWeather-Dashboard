@@ -215,14 +215,6 @@ form .form-group {
     color: var(--Anthracite);
 }
 
-.dropover {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.dropover-active {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
 .bottom-trash {
     opacity: 0;
     color: var(--Stone);
@@ -239,7 +231,6 @@ form .form-group {
 }
 
 .bottom-trash-drag {
-    transform: translateY(0);
     opacity: 1;
 }
 
