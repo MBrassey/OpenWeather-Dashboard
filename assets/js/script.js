@@ -85,7 +85,7 @@ var storeCity = function (cityName) {
     cities = JSON.parse(localStorage.getItem("city")) || [];
 
     // Push City to LocalStorage if Not Already Present
-    cities.indexOf(cityName) === -1 ? cities.push(cityName) : console.log(cityName + " is already stored.");
+    cities.indexOf(cityName) === -1 ? cities.unshift(cityName) : console.log(cityName + " is already stored.");
 
     // Sanitize JSON
     localStorage.setItem("city", JSON.stringify(cities));
@@ -99,7 +99,7 @@ var presentStoredCities = function (cityName) {
     $("#cityContainer").empty();
 
     // Present Newest Search on Top
-    const reversed = storedCities.reverse();
+    const reversed = storedCities //.reverse();
 
     // Present UpTo 8 Stored Cities 
     if (reversed.length < 8) {
@@ -128,7 +128,20 @@ var presentData = function (cityName, current, forecast, uvi) {
         $("#cityContainer").sortable({
             placeholder: "placeHolder",
             update: function () {
-                alert("updated");
+
+                var sortedArr= [];
+                $(this)
+                    .children()
+                    .each(function () {
+                        var citiesSorted = $(this).find("span").text().trim();
+                        sortedArr.push(citiesSorted); 
+                        console.log(citiesSorted);
+                    });
+                    //var arrName = $(this).attr("id").replace("list-", "");
+                    cities = sortedArr;
+                    localStorage.setItem("city", JSON.stringify(cities));
+
+
             },
         });
     });
