@@ -138,9 +138,9 @@ var presentData = function (cityName, current, forecast, uvi) {
         city: current.name,
         country: current.sys.country,
         icon: forecast.daily[0].weather[0].icon,
-        temp: forecast.daily[0].temp.day,
-        humid: forecast.daily[0].humidity,
-        wind: forecast.daily[0].wind_speed,
+        temp: current.main.temp,
+        humid: current.main.humidity,
+        wind: current.wind.speed,
         uvi: uvi.value,
         altTxt: forecast.daily[0].weather[0].description,
     };
@@ -174,7 +174,7 @@ var presentData = function (cityName, current, forecast, uvi) {
             iconURL1 +
             '" alt="' +
             currentObj.altTxt +
-            '"></span></li><li id="temp" class="cityData">Temperature: <span class="data">' +
+            '"></span></li><li id="temp" class="cityData">Current Temperature: <span class="data">' +
             currentObj.temp +
             '</span> °F</li><li id="humidity" class="cityData">Humidity: <span class="data">' +
             currentObj.humid +
@@ -194,7 +194,9 @@ var presentData = function (cityName, current, forecast, uvi) {
         var forecastDate = moment().add(i, "days").format("L");
 
         // Assign Forecast Variables
-        temp = forecast.daily[i].temp.day;
+        tempD = forecast.daily[i].temp.day;
+        tempN = forecast.daily[i].temp.night;
+        tempL = forecast.daily[1].temp.min;
         icon = forecast.daily[i].weather[0].icon;
         humid = forecast.daily[i].humidity;
         wind = forecast.daily[i].wind_speed;
@@ -210,7 +212,7 @@ var presentData = function (cityName, current, forecast, uvi) {
                 '"></li><li class="date-card" class="sm-data">' +
                 forecastDate +
                 '</li><li class="temp-card">Temp: <span class="sm-data">' +
-                temp +
+                tempD +
                 '</span> °F</li><li class="humidity-card">Humidity: <span class="sm-data">' +
                 humid +
                 '</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">' +
