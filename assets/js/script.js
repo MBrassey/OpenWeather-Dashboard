@@ -138,9 +138,9 @@ var presentData = function (cityName, current, forecast, uvi) {
         city: current.name,
         country: current.sys.country,
         icon: forecast.daily[0].weather[0].icon,
-        temp: current.main.temp,
-        humid: current.main.humidity,
-        wind: current.wind.speed,
+        temp: forecast.daily[0].temp.day,
+        humid: forecast.daily[0].humidity,
+        wind: forecast.daily[0].wind_speed,
         uvi: uvi.value,
         altTxt: forecast.daily[0].weather[0].description,
     };
