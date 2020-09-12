@@ -215,6 +215,38 @@ form .form-group {
     color: var(--Anthracite);
 }
 
+.dropover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dropover-active {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.bottom-trash {
+    opacity: 0;
+    color: var(--Stone);
+    font-size: 7rem;
+    font-family: "Staatliches", sans-serif;
+    background-color: var(--Sky);
+    margin-top: 40px;
+
+    -webkit-transition: opacity 1s ease-in;
+    -moz-transition: opacity 1s ease-in;
+     -ms-transition: opacity 1s ease-in;
+      -o-transition: opacity 1s ease-in;
+         transition: opacity 1s ease-in;
+}
+
+.bottom-trash-drag {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.bottom-trash-active {
+    color: var(--Sakura);
+}
+
 .copyleft {
     display: inline-block;
     font-weight: bold;
