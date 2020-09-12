@@ -148,6 +148,15 @@ form .form-group {
     cursor: pointer;
 }
 
+.placeHolder {
+    background-color: var(--Stone);
+    margin-top: 20px;
+    min-height: 50px;
+    min-width: 100%;
+    border: 2px dashed var(--Azure);
+    border-radius: 12px;
+}
+
 .card2:hover {
     background-color: var(--Stone);
 }

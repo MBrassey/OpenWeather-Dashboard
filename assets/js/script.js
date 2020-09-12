@@ -24,10 +24,10 @@ var formSubmitHandler = function (event) {
 };
 
 function getWeatherData(cityName) {
-    // Define OpenWeather Enpoint With Searched CityName
+    // Define OpenWeather Enpoint with Newly Searched CityName
     var dataApi = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
 
-    // Query Open Weather API to Get "coord"
+    // Query Open Weather API for "coord" Value
     fetch(dataApi)
         .then(function (response) {
             if (response.ok) {
@@ -38,6 +38,7 @@ function getWeatherData(cityName) {
                     var forecastApi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly&units=imperial&appid=" + apiKey;
                     var uviApi = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=" + apiKey;
 
+                    // Query OpenWeather API for "uvi" value
                     fetch(forecastApi)
                         .then(function (response) {
                             if (response.ok) {
@@ -79,34 +80,44 @@ function getWeatherData(cityName) {
 }
 
 var storeCity = function (cityName) {
+    // Structure the Cities Array
     var cities = [];
     cities = JSON.parse(localStorage.getItem("city")) || [];
 
     // Push City to LocalStorage if Not Already Present
     cities.indexOf(cityName) === -1 ? cities.push(cityName) : console.log(cityName + " is already stored.");
 
-    //console.log(cities);
-
+    // Sanitize JSON
     localStorage.setItem("city", JSON.stringify(cities));
 };
 
-var presentStoredCities = function(cityName) {
-        // Clear Saved Searches Container
-        $("#cityContainer").empty();
-        var storedCities = JSON.parse(localStorage.getItem('city'));
-        const reversed = storedCities.reverse();
-        // Present 8 storedCities
-        $.each(reversed, function(key, value) {
-                $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">' + value + '</span></div>');
-            console.log(reversed[7]);
+var presentStoredCities = function (cityName) {
+    // Make "cityContainer" Sortable
+    $(function () {
+        $("#cityContainer").sortable({
+            placeholder: "placeHolder",
+        });
+    });
 
-          });    
-}
+    // Load "storedCities" from LocalStorage
+    var storedCities = JSON.parse(localStorage.getItem("city"));
 
+    // Clear Saved Searches Container
+    $("#cityContainer").empty();
+
+    // Present Newest Search on Top
+    const reversed = storedCities.reverse();
+
+    // Present 8 storedCities
+    $.each(reversed, function (key, value) {
+        $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">' + value + "</span></div>");
+        console.log(reversed[7]);
+    });
+};
 
 var presentData = function (cityName, current, forecast, uvi) {
+    // Run Store & Present Functions for New City
     storeCity(cityName);
-
     presentStoredCities(cityName);
 
     // Define Current Weather Object
@@ -163,6 +174,7 @@ var presentData = function (cityName, current, forecast, uvi) {
             "</span></li></ul>"
     );
 
+    // Clear the Forecast Section for New Cards
     $("#fcst").empty();
     for (var i = 1; i < 6; i++) {
         // Set Appropriate Date
@@ -197,7 +209,7 @@ var presentData = function (cityName, current, forecast, uvi) {
 };
 
 var initial = function () {
-    // Geo Locate User's City
+    // Geo Locate User's City Without User Interaction
     console.log("Your IP, Location Etc:");
     $.get(
         "https://ipinfo.io",
