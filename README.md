@@ -1,6 +1,8 @@
 # OpenWeather Dashboard
 Weather Dashboard Concept using OpenWeather API
 
+    In this application, I utilize Javascript and jQuery methods, fetch data from Server Side Api's, store / sort & delete data from LocalSorage to create an ineractive and geographically accurate weather forecast dashboard. I utilize Bootstrap, jQuery/UI, Moment.js and Touch-Punch libraries to create a sleek & responsive user experience.
+
 - [x] [Initial App](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/1)
 - [x] [Search for City](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/2)
 - [x] [City Data](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/3)
