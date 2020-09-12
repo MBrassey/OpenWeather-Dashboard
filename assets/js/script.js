@@ -99,9 +99,9 @@ var presentStoredCities = function (cityName) {
     $("#cityContainer").empty();
 
     // Present Newest Search on Top
-    const reversed = storedCities //.reverse();
+    const reversed = storedCities; //.reverse();
 
-    // Present UpTo 8 Stored Cities 
+    // Present UpTo 8 Stored Cities
     if (reversed.length < 8) {
         // Present 8 storedCities
         $.each(reversed, function (key, value) {
@@ -114,17 +114,18 @@ var presentStoredCities = function (cityName) {
         }
     }
 
+    // Make List of All ".cityButton" Elements
     var cityButtons = document.querySelectorAll(".cityButton");
 
+    // Append onClick Listener for Each Saved City Presented
     cityButtons.forEach(function (cityBtn) {
         cityBtn.addEventListener("click", function (event) {
             var loadCity = event.target.innerText;
             if (loadCity) {
                 getWeatherData(loadCity);
             }
-        })
-    })
-
+        });
+    });
 };
 
 var presentData = function (cityName, current, forecast, uvi) {
@@ -139,7 +140,6 @@ var presentData = function (cityName, current, forecast, uvi) {
             connectWith: $(".card2 .cityButton"),
             scroll: false,
             tolerance: "pointer",
-            //helper: "clone",
             activate: function (event) {
                 console.log("activate", this);
                 $(this).addClass("dropover");
@@ -159,20 +159,19 @@ var presentData = function (cityName, current, forecast, uvi) {
                 $(this).removeClass("dropover-active");
             },
             update: function () {
-
-                var sortedArr= [];
+                // When User Drops Button, Save New Sort Order to LocalStorage
+                var sortedArr = [];
                 $(this)
                     .children()
                     .each(function () {
                         var citiesSorted = $(this).find("span").text().trim();
-                        sortedArr.push(citiesSorted); 
+                        sortedArr.push(citiesSorted);
                         console.log(citiesSorted);
                     });
-                    //var arrName = $(this).attr("id").replace("list-", "");
-                    cities = sortedArr;
-                    localStorage.setItem("city", JSON.stringify(cities));
 
-
+                // Overwrite Previous Array With New Sort Order
+                cities = sortedArr;
+                localStorage.setItem("city", JSON.stringify(cities));
             },
         });
     });
@@ -260,7 +259,9 @@ var presentData = function (cityName, current, forecast, uvi) {
                 forecastDate +
                 '</li><li class="temp-card">Temp: <span class="sm-data">' +
                 tempMax +
-                '°</span><span class="sm-data2"> / ' + tempMin + '°</span></li><li class="humidity-card">Humidity: <span class="sm-data">' +
+                '°</span><span class="sm-data2"> / ' +
+                tempMin +
+                '°</span></li><li class="humidity-card">Humidity: <span class="sm-data">' +
                 humid +
                 '</span>%</li><li class="wind-card">Wind Speed: <span class="sm-data">' +
                 wind +
@@ -271,22 +272,23 @@ var presentData = function (cityName, current, forecast, uvi) {
 };
 
 $("#trash").droppable({
+    // Configure Droppable Trash Element Behaviour
     accept: ".card2",
-    tolerance: "touch", 
-    drop: function(event, ui) {
-      //console.log("drop");
-      ui.draggable.remove()
-      $(".bottom-trash").removeClass("bottom-trash-active");
+    tolerance: "touch",
+    drop: function (event, ui) {
+        //console.log("drop");
+        ui.draggable.remove();
+        $(".bottom-trash").removeClass("bottom-trash-active");
     },
-    over: function(event, ui) {
-      //console.log("over");
-      $(".bottom-trash").addClass("bottom-trash-active");
+    over: function (event, ui) {
+        //console.log("over");
+        $(".bottom-trash").addClass("bottom-trash-active");
     },
-    out: function(event, ui) {
-      //console.log("out")
-      $(".bottom-trash").removeClass("bottom-trash-active");
-    }
-  });
+    out: function (event, ui) {
+        //console.log("out")
+        $(".bottom-trash").removeClass("bottom-trash-active");
+    },
+});
 
 var initial = function () {
     // Geo Locate User's City Without User Interaction
