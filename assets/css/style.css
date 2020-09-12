@@ -189,6 +189,11 @@ form .form-group {
     font-weight: bold;
 }
 
+.sm-data2 {
+    color: var(--Stone);
+    font-weight: normal;
+}
+
 .icon-card {
     float: right;
     color: var(--Stone);
