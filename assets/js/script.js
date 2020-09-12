@@ -1,6 +1,6 @@
 var todaysDate = moment().format("L");
 
-var apiKey = "718523b17d4bbd2336cf57c34cc3836a";
+var apiKey = "8e152ed2750d0d0366ce5d92ef6739df";
 
 var searchFormEl = document.querySelector("#search-form");
 
@@ -92,13 +92,6 @@ var storeCity = function (cityName) {
 };
 
 var presentStoredCities = function (cityName) {
-    // Make "cityContainer" Sortable
-    $(function () {
-        $("#cityContainer").sortable({
-            placeholder: "placeHolder",
-        });
-    });
-
     // Load "storedCities" from LocalStorage
     var storedCities = JSON.parse(localStorage.getItem("city"));
 
@@ -108,17 +101,37 @@ var presentStoredCities = function (cityName) {
     // Present Newest Search on Top
     const reversed = storedCities.reverse();
 
-    // Present 8 storedCities
-    $.each(reversed, function (key, value) {
-        $("#cityContainer").append('<div class="card card2 zinc"><span class="cityButton">' + value + "</span></div>");
-        console.log(reversed[7]);
-    });
+    // Present UpTo 8 Stored Cities 
+    if (reversed.length < 8) {
+        // Present 8 storedCities
+        $.each(reversed, function (key, value) {
+            $("#cityContainer").append('<div id="' + value + '" class="card card2 zinc"><span class="cityButton">' + value + "</span></div>");
+            console.log(value);
+            //var cityButtonEl = document.querySelector(value);
+            //cityButtonEl.addEventListener("click", getWeatherData(value));
+        });
+    } else {
+        var times = 8;
+        for (var i = 0; i < times; i++) {
+            $("#cityContainer").append('<div id="' + reversed[i] + '" class="card card2 zinc"><span class="cityButton">' + reversed[i] + "</span></div>");
+        }
+    }
 };
 
 var presentData = function (cityName, current, forecast, uvi) {
     // Run Store & Present Functions for New City
     storeCity(cityName);
     presentStoredCities(cityName);
+
+    // Make "cityContainer" Buttons Sortable
+    $(function () {
+        $("#cityContainer").sortable({
+            placeholder: "placeHolder",
+            update: function () {
+                alert("updated");
+            },
+        });
+    });
 
     // Define Current Weather Object
     currentObj = {
