@@ -221,7 +221,7 @@ form .form-group {
     font-size: 7rem;
     font-family: "Staatliches", sans-serif;
     background-color: var(--Sky);
-    margin-top: 40px;
+    padding-top: 40px;
 
     -webkit-transition: opacity 1s ease-in;
     -moz-transition: opacity 1s ease-in;
@@ -347,6 +347,10 @@ footer p {
         margin-bottom: 12px;
     }
 
+    .bottom-trash {
+        display: none;
+    }
+
     #icon-card {
         padding-right: 20px;
     }
@@ -366,6 +370,10 @@ footer p {
 
     .icon-card {
         padding-right: 30px;
+    }
+
+    .bottom-trash {
+        display: none;
     }
 
     #date {

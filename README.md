@@ -5,8 +5,8 @@ In this application, I utilize Javascript and jQuery methods, fetch data from Se
 Side Api's, store / sort & delete data from LocalSorage to create an accurate and 
 interactive weather forecast dashboard. I utilize Bootstrap, jQuery/UI, Moment.js 
 and Touch-Punch libraries to create a sleek & responsive user experience.The application 
-automatically locates the user through geo-location, and allows them to save up to 
-8 cities for quick access.
+automatically geo-locates the user, and allows them to save and sort up to 8 cities 
+for quick access.
 
 
 - [x] [Initial App](https://github.com/luc1dLife/OpenWeather-Dashboard/issues/1)
