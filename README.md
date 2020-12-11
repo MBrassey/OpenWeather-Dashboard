@@ -1,6 +1,6 @@
 ## OpenWeather Dashboard
 
-Weather dashboard concept using OpenWeather API, ipinfo.io API, jQuery/JS/HTML/CSS.
+Weather dashboard concept using OpenWeather API, ipinfo.io API, jQuery/JS/HTML/CSS, packaged by @electron-forge for Windows, Mac & Linux.
 
 ![licensebadge](https://img.shields.io/badge/license-CC0_1.0_Universal-blue)
 
