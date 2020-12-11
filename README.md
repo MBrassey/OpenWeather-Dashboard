@@ -14,6 +14,10 @@ Weather dashboard concept using OpenWeather API, ipinfo.io API, jQuery/JS/HTML/C
 - [x] [Touch-Up](https://github.com/MBrassey/OpenWeather-Dashboard/issues/6)
 - [x] [GeoLocate](https://github.com/MBrassey/OpenWeather-Dashboard/issues/7)
 
+#### Download
+
+[Releases](https://github.com/MBrassey/OpenWeather-Dashboard/releases/tag/1.0.0)
+
 <h6><p align="right">:cyclone: Click the image(s) below to view the live <a id="Screenshots" href="https://MBrassey.github.io/OpenWeather-Dashboard/">webapplication</a></p></h6>
 
 [<p align="center"><img src="assets/img/Preview.png">](https://MBrassey.github.io/OpenWeather-Dashboard/)
