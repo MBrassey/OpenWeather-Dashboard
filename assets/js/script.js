@@ -251,7 +251,7 @@ var presentData = function (cityName, current, forecast, uvi) {
         // Generate Forecast Cards
         var iconURL = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
         $("#fcst").append(
-            '<div class="card"><ul><li class="icon-card" class="sm-data"><img src="' +
+            '<div class="card"><ul><li class="icon-card icon1" class="sm-data"><img src="' +
                 iconURL +
                 '" alt="' +
                 altTxt +

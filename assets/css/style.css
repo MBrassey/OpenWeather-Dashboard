@@ -77,6 +77,13 @@ form .form-group {
     flex: 1;
 }
 
+.icon1 {
+    border-radius: 36px;
+    background-color: var(--Zinc);
+    max-width: 100px;
+    margin-right: 33px;
+}
+
 .btn {
     flex: 1;
     font-family: "Aldrich", sans-serif;
